@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <p>Open the console to see WebSocket messages.</p>
+
+    <script>
+        $(document).ready(function() {
+            const socket = new WebSocket('ws://localhost:7028');
+
+            socket.onopen = function() {
+                console.log('Connected to WebSocket server');
+                socket.send('Hello from the client!'); // Send a message to the server
+            };
+
+            socket.onmessage = function(event) {
+                console.log('Message from server:', event.data); // Log messages received from the server
+            };
+
+            socket.onclose = function() {
+                console.log('Disconnected from WebSocket server');
+            };
+
+            socket.onerror = function(error) {
+                console.error('WebSocket Error:', error);
+            };
+        });
+    </script>
+</body>
+</html>
