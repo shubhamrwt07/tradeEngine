@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const path = require("path");
-require("./socket");
+// require("./socket");
 
 // Load environment variables from .env file
 dotenv.config();
@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
 // Additional routes (example)
 app.use("/orderbook", require("./modules/orderbook/routes")); // Example route for orderbook module
-
+app.use("/user", require("./modules/users/user.routes")); // Example route for user module
 // Start the server on port 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const orderBookSchema = new mongoose.Schema({
+const historySchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -30,12 +30,8 @@ const orderBookSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["open", "matched", "closed"],
-    default: "open",
-  },
-  timestamp: {
-    type: Date,
-    default: Date.now,
+    enum: ["matched", "closed"],
+    default: "matched",
   },
   filledQuantity: {
     type: Number,
@@ -45,11 +41,15 @@ const orderBookSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-const OrderBook = mongoose.model("OrderBook", orderBookSchema);
-module.exports = OrderBook;
+const History = mongoose.model("History", historySchema);
+module.exports = History;
